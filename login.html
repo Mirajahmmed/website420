@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form with Animation</title>
+
+  <style>
+    /* পৃষ্ঠার জন্য সাধারণ শৈলী */
+    body {
+      font-family: Arial, sans-serif; /* ফন্ট সেটিং */
+      background-color: #f0f0f0; /* ব্যাকগ্রাউন্ড কালার */
+      display: flex;
+      justify-content: center; /* সেন্টারিং */
+      align-items: center;
+      height: 100vh; /* পৃষ্ঠার সম্পূর্ণ উচ্চতা */
+      margin: 0;
+      background-image: url('/storage/emulated/0/html/tesla_blur_20.png'); /* ব্যাকগ্রাউন্ড হিসেবে ছবি যোগ করা */
+      background-size: cover; /* ব্যাকগ্রাউন্ড ছবির আকার সম্পূর্ণ পৃষ্ঠার সঙ্গে মাপানো */
+      background-position: center; /* ছবির অবস্থান কেন্দ্রীয় করা */
+    }
+
+    /* ফর্মের জন্য শৈলী */
+    form {
+      background-color: pink; /* ফর্মের পটভূমি কালার */
+      padding: 20px; /* প্যাডিং */
+      border-radius: 8px; /* কোণার গোলাকার প্রভাব */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* ছায়া */
+      width: 300px; /* ফর্মের প্রস্থ */
+      animation: fadeIn 1s ease-out; /* এনিমেশন */
+    }
+
+    /* লেবেল (এটি ইনপুট ফিল্ডের উপরে থাকবে) */
+    label {
+      font-size: 14px; /* ফন্ট সাইজ */
+      margin-bottom: 5px; /* নীচের মার্জিন */
+      display: block;
+    }
+
+    /* ইনপুট ফিল্ডের শৈলী */
+    input[type="text"],
+    input[type="password"] {
+      width: 93%; /* প্রস্থ */
+      padding: 10px; /* প্যাডিং */
+      margin: 10px 0; /* মার্জিন */
+      border: 2px solid black; /* বর্ডার */
+      border-radius: 12px; /* কোণার গোলাকার প্রভাব */
+      transition: all 0.3s ease; /* ট্রানজিশন প্রভাব */
+      position: relative;
+    }
+
+    /* ইনপুট ফিল্ডে ফোকাস হলে পরিবর্তন */
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #007BFF; /* ফোকাস হলে বর্ডারের রঙ পরিবর্তন */
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* বক্স শ্যাডো */
+      animation: shake 0.3s ease-out; /* এনিমেশন */
+    }
+
+    /* প্লেসহোল্ডার টেক্সটের শৈলী এবং অ্যানিমেশন */
+    input[type="text"]::placeholder,
+    input[type="password"]::placeholder {
+      color: black; /* প্লেসহোল্ডারের রঙ */
+      font-size: 14px; /* ফন্ট সাইজ */
+      transition: all 0.3s ease; /* ট্রানজিশন প্রভাব */
+      position: absolute;
+      top: 50%; /* অবস্থান */
+      left: 10px;
+      transform: translateY(-50%); /* সেন্টারিং */
+    }
+
+    /* ইনপুট ফিল্ডে ফোকাস হলে প্লেসহোল্ডার টেক্সটের পরিবর্তন */
+    input[type="text"]:focus::placeholder,
+    input[type="password"]:focus::placeholder {
+      top: -10px; /* উপরের দিকে উঠানো */
+      font-size: 12px; /* ছোট ফন্ট সাইজ */
+      color: #007BFF; /* রঙ পরিবর্তন */
+    }
+
+    /* সাবমিট বাটনের শৈলী */
+    input[type="submit"] {
+      background-color: #007BFF; /* বাটনের ব্যাকগ্রাউন্ড কালার */
+      color: white; /* বাটনের টেক্সট কালার */
+      padding: 10px; /* প্যাডিং */
+      border: none; /* বর্ডার নেই */
+      border-radius: 4px; /* কোণার গোলাকার প্রভাব */
+      cursor: pointer; /* কীবোর্ডের পয়েন্টার */
+      transition: background-color 0.3s ease; /* ট্রানজিশন প্রভাব */
+    }
+
+    /* সাবমিট বাটনে হোভার করলে পরিবর্তন */
+    input[type="submit"]:hover {
+      background-color: #0056b3; /* হোভার করলে ব্যাকগ্রাউন্ড কালার পরিবর্তন */
+    }
+
+    /* ফেইড ইন এনিমেশন */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px); /* উপরে উঠানো */
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0); /* স্বাভাবিক অবস্থানে আনা */
+      }
+    }
+
+    /* শেক এনিমেশন */
+    @keyframes shake {
+      0% {
+        transform: translateX(0);
+      }
+      25% {
+        transform: translateX(-5px); /* বামে সরে যাওয়া */
+      }
+      50% {
+        transform: translateX(5px); /* ডানে সরে যাওয়া */
+      }
+      75% {
+        transform: translateX(-5px); /* বামে সরে যাওয়া */
+      }
+      100% {
+        transform: translateX(0); /* সোজা অবস্থানে আসা */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- লগইন ফর্ম -->
+  <form action="login.php" method="post">
+    <label for="username">Username:</label> <!-- ইউজারনেমের লেবেল -->
+    <input type="text" id="username" name="username" required placeholder="Enter Username"><br> <!-- ইউজারনেম ইনপুট ফিল্ড -->
+
+    <label for="password">Password:</label> <!-- পাসওয়ার্ডের লেবেল -->
+    <input type="password" id="password" name="password" required placeholder="Enter Password"><br> <!-- পাসওয়ার্ড ইনপুট ফিল্ড -->
+
+    <input type="submit" value="Login"> <!-- সাবমিট বাটন -->
+  </form>
+</body>
+</html>
